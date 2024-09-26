@@ -1,0 +1,4 @@
+var body = $request.body;
+// var StudentId =  body.match(/ApplyInfo%5BStudentId%5D=(\d+)/)[1];
+// console.log(StudentId);
+if (body.match(/ApplyInfo%5BLatitude%5D=(\d+\.\d+)&ApplyInfo%5BLongitude%5D=(\d+\.\d+)/)) {console.log('Location Permission');var grantLocationRegext = /ApplyInfo%5BLatitude%5D=(\d+\.\d+)&ApplyInfo%5BLongitude%5D=(\d+\.\d+)/;body=body.replace(grantLocationRegext, 'ApplyInfo%5BLatitude%5D=26.075136&ApplyInfo%5BLongitude%5D=119.162543');notify("xsgz OK");}else {console.log('No Location Permission');var notGrantLocationRegext = /ApplyInfo%5BLatitude%5D=&ApplyInfo%5BLongitude%5D=/;body=body.replace(notGrantLocationRegext, 'ApplyInfo%5BLatitude%5D=26.075136&ApplyInfo%5BLongitude%5D=119.162543');$notify("xsgz OK Without LocationText");};console.log($request.body);$done(body);
